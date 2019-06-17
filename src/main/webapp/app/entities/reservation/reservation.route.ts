@@ -11,6 +11,7 @@ import { ReservationDetailComponent } from './reservation-detail.component';
 import { ReservationUpdateComponent } from './reservation-update.component';
 import { ReservationDeletePopupComponent } from './reservation-delete-dialog.component';
 import { IReservation } from 'app/entities/reservation/reservation.model';
+import { ReservationNewComponent } from './reservation-new.component';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationResolve implements Resolve<IReservation> {
@@ -65,6 +66,18 @@ export const reservationRoute: Routes = [
   {
     path: ':id/edit',
     component: ReservationUpdateComponent,
+    resolve: {
+      reservation: ReservationResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'starter02App.reservation.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: 'create',
+    component: ReservationNewComponent,
     resolve: {
       reservation: ReservationResolve
     },

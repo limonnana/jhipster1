@@ -13,6 +13,7 @@ import {
   reservationRoute,
   reservationPopupRoute
 } from './';
+import { ReservationNewComponent } from './reservation-new.component';
 
 const ENTITY_STATES = [...reservationRoute, ...reservationPopupRoute];
 
@@ -23,7 +24,8 @@ const ENTITY_STATES = [...reservationRoute, ...reservationPopupRoute];
     ReservationDetailComponent,
     ReservationUpdateComponent,
     ReservationDeleteDialogComponent,
-    ReservationDeletePopupComponent
+    ReservationDeletePopupComponent,
+    ReservationNewComponent
   ],
   entryComponents: [ReservationComponent, ReservationUpdateComponent, ReservationDeleteDialogComponent, ReservationDeletePopupComponent],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],

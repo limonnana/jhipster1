@@ -67,6 +67,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
 })
 export class Starter02AppModule {
   constructor(private dpConfig: NgbDatepickerConfig) {
-    this.dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
+    this.dpConfig.minDate = { year: moment().year() - 100, monthArrayOrder: 1, day: 1 };
   }
 }

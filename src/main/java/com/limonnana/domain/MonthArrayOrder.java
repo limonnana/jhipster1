@@ -5,7 +5,12 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Month {
+/*
+This class is intended to use in a ordered fashion units, thus some spaces will be empty but still occupied space.
+The opposite will be the case for the linkedlist, that will occupied only those spaces thar are being used.
+
+ */
+public class MonthArrayOrder {
 
     private  java.time.Month name;
     private  int year;
@@ -14,58 +19,58 @@ public class Month {
     private  int amountMaximunUnitsPerDay;
     private  Map<Integer, UnitOfCalendar[]> m  = new TreeMap<>();
 
-    public Month(){}
+    public MonthArrayOrder(){}
 
-    public Month getMonth(java.time.Month name, int year, int amountMaximunUnitsPerDay){
+    public MonthArrayOrder getMonth(java.time.Month name, int year, int amountMaximunUnitsPerDay){
 
-        Month month = new Month();
+        MonthArrayOrder monthArrayOrder = new MonthArrayOrder();
         LocalDate ld = LocalDate.of(year, name, 1);
-        month.setFrom(1);
-        month.setName(name);
-        month.setUntill(ld.lengthOfMonth());
-        month.setYear(year);
-        for(int i=1;i<=month.getUntill();i++){
+        monthArrayOrder.setFrom(1);
+        monthArrayOrder.setName(name);
+        monthArrayOrder.setUntill(ld.lengthOfMonth());
+        monthArrayOrder.setYear(year);
+        for(int i = 1; i<= monthArrayOrder.getUntill(); i++){
             UnitOfCalendar[] units = new UnitOfCalendar[amountMaximunUnitsPerDay];
-            month.getM().put(i, units);
+            monthArrayOrder.getM().put(i, units);
         }
 
-        return month;
+        return monthArrayOrder;
     }
 
-    public Month getMonth(LocalDateTime day, int amountMaximunUnitsPerDay){
+    public MonthArrayOrder getMonth(LocalDateTime day, int amountMaximunUnitsPerDay){
 
-        Month month = new Month();
+        MonthArrayOrder monthArrayOrder = new MonthArrayOrder();
         LocalDateTime now = day;
         int yearCurrent = now.getYear();
-        month.setName(now.getMonth());
-        month.setFrom(1);
-        month.setUntill(LocalDate.now().lengthOfMonth());
-        month.setYear(yearCurrent);
+        monthArrayOrder.setName(now.getMonth());
+        monthArrayOrder.setFrom(1);
+        monthArrayOrder.setUntill(LocalDate.now().lengthOfMonth());
+        monthArrayOrder.setYear(yearCurrent);
 
-        for(int i=1;i<=month.getUntill();i++){
+        for(int i = 1; i<= monthArrayOrder.getUntill(); i++){
             UnitOfCalendar[] units = new UnitOfCalendar[amountMaximunUnitsPerDay];
-            month.getM().put(i, units);
+            monthArrayOrder.getM().put(i, units);
         }
 
-        return month;
+        return monthArrayOrder;
     }
 
-    public Month getCurrent(int amountMaximunUnitsPerDay){
-        Month month = new Month();
+    public MonthArrayOrder getCurrentMonth(int amountMaximunUnitsPerDay){
+        MonthArrayOrder monthArrayOrder = new MonthArrayOrder();
         LocalDateTime now = LocalDateTime.now();
         int yearCurrent = now.getYear();
         int day = now.getDayOfMonth();
-        month.setName(now.getMonth());
-        month.setFrom(day);
-        month.setUntill(LocalDate.now().lengthOfMonth());
-        month.setYear(yearCurrent);
+        monthArrayOrder.setName(now.getMonth());
+        monthArrayOrder.setFrom(day);
+        monthArrayOrder.setUntill(LocalDate.now().lengthOfMonth());
+        monthArrayOrder.setYear(yearCurrent);
 
-        for(int i=day;i<=month.getUntill();i++){
+        for(int i = day; i<= monthArrayOrder.getUntill(); i++){
             UnitOfCalendar[] units = new UnitOfCalendar[amountMaximunUnitsPerDay];
-            month.getM().put(i, units);
+            monthArrayOrder.getM().put(i, units);
         }
 
-        return month;
+        return monthArrayOrder;
     }
 
     public LocalDateTime getMonthForward(int howManyMonthForward){

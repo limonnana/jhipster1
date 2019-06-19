@@ -18,7 +18,7 @@ function getDate(isToday = true) {
     // Today + 1 day - needed if the current day must be included
     date.setDate(date.getDate() + 1);
   } else {
-    // get last month
+    // get last monthArrayOrder
     if (date.getMonth() === 0) {
       date = new Date(date.getFullYear() - 1, 11, date.getDate());
     } else {

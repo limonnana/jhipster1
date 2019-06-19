@@ -1,0 +1,15 @@
+<div>
+  <h3 id="page-heading">
+      <span jhiTranslate="month.home.title">{{month.name}}</span>
+  </h3>
+    
+   
+     <table border="1">
+    <tbody>
+      <tr *ngFor="let x of month.m | keyvalue">
+         <td>{{x.key}} </td>
+         <td *ngFor="let data of x.value"> {{data.userId}} </td>
+      </tr>
+     </tbody>
+    </table>
+</div>

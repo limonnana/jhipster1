@@ -8,6 +8,7 @@
       "entities": {
         "main": "Entidades",
         "reservation": "Reservaciones",
+        "month": "Mes",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

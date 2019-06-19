@@ -7,6 +7,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'reservation',
         loadChildren: './reservation/reservation.module#Starter02ReservationModule'
+      },
+      {
+        path: 'month',
+        loadChildren: './month/month.module#MonthModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

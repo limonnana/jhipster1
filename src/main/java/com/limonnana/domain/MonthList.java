@@ -1,5 +1,6 @@
 package com.limonnana.domain;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,32 +9,32 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.time.Month;
 
+@Entity
+@Table(name = "month_list")
 public class MonthList {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
+
+    @Column(name = "name", columnDefinition = "smallint")
+    @Enumerated
     private Month name;
     private int year;
     private int from;
     private int untill;
-    private Map<Integer, List<UnitOfCalendar>> m = new TreeMap<>();
+    @ElementCollection
+    private Map<Integer, ListWrapper> map = new TreeMap<>();
 
+    public MonthList(){}
 
-    public MonthList getCurrentMonth() {
-        MonthList month = new MonthList();
-        LocalDateTime now = LocalDateTime.now();
-        int yearCurrent = now.getYear();
-        int day = now.getDayOfMonth();
-        month.setName(now.getMonth());
-        month.setFrom(day);
-        month.setUntill(LocalDate.now().lengthOfMonth());
-        month.setYear(yearCurrent);
+    public MonthList(int from, int untill, int year, Month name){
 
-        for (int i = day; i <= month.getUntill(); i++) {
-            List<UnitOfCalendar> units = new ArrayList<>();
-            month.getM().put(i, units);
-        }
-
-        return month;
+        this.name = name;
+        this.from = from;
+        this.untill = untill;
+        this.year = year;
     }
 
     public Month getName() {
@@ -68,19 +69,20 @@ public class MonthList {
         this.untill = untill;
     }
 
-    public Map<Integer, List<UnitOfCalendar>> getM() {
-        return m;
-    }
-
-    public void setM(Map<Integer, List<UnitOfCalendar>> m) {
-        this.m = m;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public Map<Integer, ListWrapper> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<Integer, ListWrapper> map) {
+        this.map = map;
     }
 }

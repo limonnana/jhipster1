@@ -2,6 +2,7 @@ package com.limonnana.monthFactory;
 
 import com.limonnana.domain.*;
 import com.limonnana.domain.MonthList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,14 +14,17 @@ public class MonthCreator {
 
     private static final int MIN = 1;
     private static final int MAX = 8;
-    private static final int HOW_MANY_RESERVATIONS_PER_DAY_ARE_ALLOWED = 7;
+    private static final int HOW_MANY_RESERVATIONS_PER_DAY_ARE_ALLOWED = 39;
+
+    @Autowired
+    MonthUtils monthUtils;
 
 
     public static void main(String[] args){
 
         MonthCreator mc = new MonthCreator();
         MonthList monthList = mc.getMockTestListReservations();
-        System.out.println(monthList.getM().values().toArray());
+        System.out.println(monthList.getMap().values().toArray());
  /*
         LocalDateTime today =  LocalDateTime.now();     //Today
 
@@ -63,9 +67,9 @@ public class MonthCreator {
     public MonthList getMockTestListReservations(){
 
         MonthList monthList = new MonthList();
-        monthList = monthList.getCurrentMonth();
+        monthList = monthUtils.getCurrentMonth();
         monthList.setId(1L);
-        Map m =  monthList.getM();
+        Map m =  monthList.getMap();
         UnitOfCalendar u = new UnitOfCalendarI();
 
         m.forEach((key, value) -> {
@@ -75,7 +79,7 @@ public class MonthCreator {
                 int randomNum = ThreadLocalRandom.current().nextInt(MIN, MAX + 1);
                 if((i % randomNum) == 0){
                     UnitOfCalendar unit = new UnitOfCalendarI();
-                    unit.setUserId("dogName_user_" + i);
+                    unit.setUserId(" |"+ i+ "| " );
                     uc.add(unit);
                 }
             }

@@ -37,23 +37,6 @@ public class MonthArrayOrder {
         return monthArrayOrder;
     }
 
-    public MonthArrayOrder getMonth(LocalDateTime day, int amountMaximunUnitsPerDay){
-
-        MonthArrayOrder monthArrayOrder = new MonthArrayOrder();
-        LocalDateTime now = day;
-        int yearCurrent = now.getYear();
-        monthArrayOrder.setName(now.getMonth());
-        monthArrayOrder.setFrom(1);
-        monthArrayOrder.setUntill(LocalDate.now().lengthOfMonth());
-        monthArrayOrder.setYear(yearCurrent);
-
-        for(int i = 1; i<= monthArrayOrder.getUntill(); i++){
-            UnitOfCalendar[] units = new UnitOfCalendar[amountMaximunUnitsPerDay];
-            monthArrayOrder.getM().put(i, units);
-        }
-
-        return monthArrayOrder;
-    }
 
     public MonthArrayOrder getCurrentMonth(int amountMaximunUnitsPerDay){
         MonthArrayOrder monthArrayOrder = new MonthArrayOrder();
@@ -71,24 +54,6 @@ public class MonthArrayOrder {
         }
 
         return monthArrayOrder;
-    }
-
-    public LocalDateTime getMonthForward(int howManyMonthForward){
-
-        LocalDateTime firstDayNextMonth = getNextMonth();
-        int month = firstDayNextMonth.getMonth().getValue();
-        int nextMonth = month + 1;
-       // firstDayNextMonth.
-        return firstDayNextMonth.plusMonths(howManyMonthForward);
-    }
-
-    public LocalDateTime getNextMonth(){
-        LocalDateTime now = LocalDateTime.now();
-        int day = now.getDayOfMonth();
-        int untill = LocalDate.now().lengthOfMonth();
-        int toEndOfThisMonth = (untill - day) + 1;
-
-        return now.plusDays(toEndOfThisMonth);
     }
 
 

@@ -24,6 +24,7 @@ public class MonthList {
     private int year;
     private int from;
     private int untill;
+
     @ElementCollection
     private Map<Integer, ListWrapper> map = new TreeMap<>();
 
